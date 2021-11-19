@@ -2,6 +2,7 @@ package lab6p2_juanoliva_10741313;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 public class PokeGrupo {
     private String nombre;
@@ -87,6 +88,17 @@ public class PokeGrupo {
                     tipo = "No determinado";
                 }
             break;
+        }
+    }
+    
+    public boolean cambioLider(){
+        int cantidad = miembros.size();
+        if (cantidad > 0) {
+            Random aleatorio = new Random();
+            lider = miembros.get(aleatorio.nextInt(cantidad-1));
+            return true;
+        }else{
+            return false;
         }
     }
     

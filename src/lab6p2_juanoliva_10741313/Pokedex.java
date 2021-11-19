@@ -21,8 +21,12 @@ public class Pokedex {
         return damagePromedio;
     }
 
-    public void setDamagePromedio(float damagePromedio) {
-        this.damagePromedio = damagePromedio;
+    public void setDamagePromedio() {
+        float totalDamage = 0;
+        for (Pokemon temp : lista) {
+            totalDamage += temp.getDamage();
+        }
+        damagePromedio = totalDamage/lista.size();
     }
 
     @Override
@@ -38,5 +42,4 @@ public class Pokedex {
             return false;
         }
     }
-    
 }
