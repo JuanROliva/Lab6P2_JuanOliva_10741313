@@ -258,8 +258,16 @@ public class Login extends javax.swing.JFrame {
                             (jpasswordRegistro.getPassword().length>0)&
                             (fNacimiento.getDate()!=null);
         if (condicion) {
-            db.getUsers().add(new Usuario());
+            String nombre = jt_nombreRegistro.getText();
+            String apellido = jt_apellidoRegistro.getText();
+            String nUsuario = jt_usuarioRegistro.getText();
+            String password = String.valueOf(jpasswordRegistro.getPassword());
             
+            db.getUsers().add(new Usuario());
+            db.getUsers().get(0).setNombre(nombre);
+            db.getUsers().get(0).setApellido(apellido);
+            db.getUsers().get(0).setnUsuario(nUsuario);
+            db.getUsers().get(0).setNacimiento(fNacimiento.getDate());
         }
         
                 
