@@ -22,7 +22,7 @@
                                       <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jt_nombreRegistro" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jt_usuarioRegistro" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jDateChooserRegistro" max="32767" attributes="0"/>
+                                      <Component id="fNacimiento" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -90,7 +90,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jb_colorRegistro" max="32767" attributes="0"/>
-                      <Component id="jDateChooserRegistro" max="32767" attributes="0"/>
+                      <Component id="fNacimiento" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="33" max="32767" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
@@ -150,7 +150,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jb_colorRegistro">
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserRegistro">
+        <Component class="com.toedter.calendar.JDateChooser" name="fNacimiento">
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>

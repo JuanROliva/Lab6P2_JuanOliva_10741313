@@ -40,7 +40,7 @@ public class Login extends javax.swing.JFrame {
         jt_usuarioRegistro = new javax.swing.JTextField();
         jpasswordRegistro = new javax.swing.JPasswordField();
         jb_colorRegistro = new javax.swing.JButton();
-        jDateChooserRegistro = new com.toedter.calendar.JDateChooser();
+        fNacimiento = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -92,7 +92,7 @@ public class Login extends javax.swing.JFrame {
                                     .addComponent(jLabel7)
                                     .addComponent(jt_nombreRegistro)
                                     .addComponent(jt_usuarioRegistro)
-                                    .addComponent(jDateChooserRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(fNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(91, 91, 91)
                                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jb_colorRegistro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -142,7 +142,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jb_colorRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDateChooserRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(fNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(59, 59, 59))
@@ -219,7 +219,6 @@ public class Login extends javax.swing.JFrame {
 
     private void jb_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_loginActionPerformed
         ArrayList<Usuario> users = db.getUsers();
-        int contador = 0;
         
         if (!jt_usuario.getText().isEmpty()&&(jPass.getPassword().length>0)) {
             boolean encontrado = false;
@@ -239,17 +238,32 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Usuario incorrecto");
                 contador++;
                 if (contador==3) {
-                    contador=0;
                     jDialog1.setVisible(true);
+                    jDialog1.setLocationRelativeTo(null);
+                    jDialog1.pack();
+                    contador=0;
                 }
             }
-            
-            
+        }else{
+            JOptionPane.showMessageDialog(this, "Favor completar todos los datos");
         }
+        
+        
     }//GEN-LAST:event_jb_loginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        boolean condicion = !jt_nombreRegistro.getText().isEmpty()&
+                            !jt_apellidoRegistro.getText().isEmpty()&
+                            !jt_usuarioRegistro.getText().isEmpty()&
+                            (jpasswordRegistro.getPassword().length>0)&
+                            (fNacimiento.getDate()!=null);
+        if (condicion) {
+            db.getUsers().add(new Usuario());
+            
+        }
         
+                
+                
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -288,8 +302,8 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser fNacimiento;
     private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooserRegistro;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -315,4 +329,5 @@ public class Login extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     BaseDatos baseDatos = new BaseDatos();
+    int contador = 0;
 }
