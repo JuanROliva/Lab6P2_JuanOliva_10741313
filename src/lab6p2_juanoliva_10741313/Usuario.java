@@ -9,6 +9,7 @@ public class Usuario {
     private String nUsuario;
     private String password;
     private Date nacimiento;
+    private int edad;
     private Color favorito;
     private Pokedex pk1;
     private Pokedex pk2;
@@ -68,6 +69,15 @@ public class Usuario {
     public void setNacimiento(Date nacimiento) {
         this.nacimiento = nacimiento;
     }
+    
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        calcularEdad();
+    }
+    
 
     public Color getFavorito() {
         return favorito;
@@ -104,6 +114,15 @@ public class Usuario {
     @Override
     public String toString() {
         return nombre +" "+apellido;
+    }
+    
+    public void calcularEdad(){
+        long inicial = nacimiento.getTime();
+        Date a = new Date();
+        long actual = a.getTime();
+        long diferencia = actual - inicial;
+        Date resultado = new Date(diferencia);
+        edad = resultado.getYear();
     }
     
     
