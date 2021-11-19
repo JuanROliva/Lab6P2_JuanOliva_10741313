@@ -1,6 +1,7 @@
 package lab6p2_juanoliva_10741313;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
     
@@ -217,12 +218,31 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jb_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_loginActionPerformed
-//        PantallaPrincipal PP = new PantallaPrincipal();
-//        PP.datos = baseDatos;
-//        PP.setVisible(true);
-
+        ArrayList<Usuario> users = db.getUsers();
+        int contador = 0;
+        
         if (!jt_usuario.getText().isEmpty()&&(jPass.getPassword().length>0)) {
             boolean encontrado = false;
+            for (Usuario temp : users) {
+                String u = temp.getnUsuario();
+                String p = String.valueOf(jPass.getPassword());
+                if (jt_usuario.getText().equals(u)&&p.equals(temp.getPassword())) {
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (encontrado) {
+                PantallaPrincipal PP = new PantallaPrincipal();
+                PP.datos = baseDatos;
+                PP.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(this, "Usuario incorrecto");
+                contador++;
+                if (contador==3) {
+                    contador=0;
+                    jDialog1.setVisible(true);
+                }
+            }
             
             
         }
